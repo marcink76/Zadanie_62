@@ -1,13 +1,15 @@
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         MultiArray multiArray = new MultiArray(20, 10);
 
         multiArray.randomize();
 
         multiArray.print();
 
-        multiArray.findMin();
+        int maxValue = multiArray.findMax();
 
-        multiArray.findMax();
+        System.out.println("Najmniejsza wartość to: " + multiArray.findMin(maxValue));
+
+        System.out.println("Największa wartość to: " + maxValue);
     }
 }

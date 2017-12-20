@@ -1,70 +1,52 @@
+import java.util.Random;
 
 public class MultiArray {
-    private int n = 10;
-    private int m = 10;
-    int[][] array = new int[n][m];
 
+    private int[][] array;
 
     public MultiArray(int n, int m) {
-        this.n = n;
-        this.m = m;
+        array = new int[n][m];
     }
 
     public void randomize() {
-        int count = 0;
-        int count2 = 0;
-        do {
-            array[count][count2] = RandomFill.randomFill();
-            count++;
-            if (count == m) {
-                count2++;
-                count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                array[i][j] = RandomFill.randomFill();
             }
-        } while (count <= n - 1 && count2 <= m - 1);
+        }
     }
 
     public void print() {
-        int count = 0;
-        int count2 = 0;
-        do {
-            System.out.print(array[count][count2] + " ");
-            count++;
-
-            if (count == m) {
-                count2++;
-                count = 0;
-                System.out.println();
+        for (int[] arrays : array) {
+            for (int number : arrays) {
+                System.out.print(number + "\t");
             }
-        } while (count <= n - 1 && count2 <= m - 1);
-    }
-
-    public void findMin() {
-        int count = 0;
-        int count2 = 0;
-        int min = 0;
-
-        for (count = 0; count < n; count++) {
-            for (count2 = 0; count2 < m; count2++) {
-                if (array[count][count2] < min) {
-                    min = array[count][count2];
-                }
-            }
+            System.out.println();
         }
-        System.out.println("Min to: " + min);
     }
 
-    public void findMax() {
-        int count = 0;
-        int count2 = 0;
+    public int findMax() {
         int max = 0;
-
-        for (count = 0; count < n; count++) {
-            for (count2 = 0; count2 < m; count2++) {
-                if (array[count][count2] > max) {
-                    max = array[count][count2];
+        for (int[] arrays : array) {
+            for (int number : arrays) {
+                if (number > max) {
+                    max = number;
                 }
             }
         }
-        System.out.println("Max to: " + max);
+        return max;
+    }
+
+    public int findMin(int max) {
+        int min = max;
+        for (int[] arrays : array) {
+            for (int number : arrays) {
+                if (number < min) {
+                    min = number;
+                }
+            }
+        }
+        return min;
     }
 }
